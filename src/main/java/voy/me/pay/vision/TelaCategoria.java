@@ -5,17 +5,22 @@
  */
 package voy.me.pay.vision;
 
+import voy.me.pay.control.ControllerCategoria;
+
 /**
  *
  * @author BrAcInhO
  */
 public class TelaCategoria extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaCategoria
-     */
+    
+    
+    
     public TelaCategoria() {
         initComponents();
+        
+       
+        
     }
 
     /**

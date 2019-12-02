@@ -5660,4 +5660,9 @@ titulo_id bigint
 registroAtivo integer
 );
 
+select * from categoria;
+drop table categoria;
+insert into categoria (id, nome, registroAtivo) values (1, 'teste', 1);
+insert into categoria (id, nome, registroAtivo) values (2, 'oi', 1);
+insert into categoria (id, nome, registroAtivo) values (3, 'bla', 1);
 
