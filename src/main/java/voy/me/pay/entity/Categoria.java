@@ -25,8 +25,8 @@ public class Categoria implements EntidadeBase, Serializable {
     @Column(name="registroAtivo")
     private int registroAtivo;
     
-    //@OneToMany(mappedBy = "categoria")
-    //private List<Titulo> categoriaTitulos;
+    @OneToMany(mappedBy = "categoria")
+    private List<Titulo> categoriaTitulos;
     
     @Override
     public Long getId() {
@@ -53,7 +53,14 @@ public class Categoria implements EntidadeBase, Serializable {
         this.registroAtivo = registroAtivo;
     }
 
+    public List<Titulo> getCategoriaTitulos() {
+        return categoriaTitulos;
+    }
+
+    public void setCategoriaTitulos(List<Titulo> categoriaTitulos) {
+        this.categoriaTitulos = categoriaTitulos;
+    }
+
     
-   
     
 }
