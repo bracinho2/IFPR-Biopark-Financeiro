@@ -2,10 +2,8 @@ package voy.me.pay.entity;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,8 +22,8 @@ public class TipoTitulo implements EntidadeBase, Serializable {
     @Column(name="nome")
     private String nome;
     
-    //@OneToMany(mappedBy = "tipotitulo",targetEntity= Titulo.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    //private List<Titulo> titulos;
+    @OneToMany(mappedBy = "tipotitulo") //,targetEntity= Titulo.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Titulo> tipoTitulos;
 
     @Override
     public Long getId() {
@@ -43,5 +41,15 @@ public class TipoTitulo implements EntidadeBase, Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-       
+
+    public List<Titulo> getTipoTitulos() {
+        return tipoTitulos;
+    }
+
+    public void setTipoTitulos(List<Titulo> tipoTitulos) {
+        this.tipoTitulos = tipoTitulos;
+    }
+    
+    
+    
 }

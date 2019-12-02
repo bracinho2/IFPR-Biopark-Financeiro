@@ -5,6 +5,9 @@
     <class>voy.me.pay.entity.Pessoa</class>
     <class>voy.me.pay.entity.Cidade</class>
     <class>voy.me.pay.entity.Estado</class>
+    <class>voy.me.pay.entity.Categoria</class>
+    <class>voy.me.pay.entity.TipoTitulo</class>
+    <class>voy.me.pay.entity.Titulo</class>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mevoypay?useSSL=true&amp;useTimezone=true&amp;serverTimezone=UTC&amp;useLegacyDatetimeCode=false"/>

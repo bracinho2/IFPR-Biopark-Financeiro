@@ -143,7 +143,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbCadastraCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastraCategoriaActionPerformed
-        //new TelaCategoria().setVisible(true);
+        new TelaCategoria().setVisible(true);
     }//GEN-LAST:event_jbCadastraCategoriaActionPerformed
 
     private void jbCadastrarTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarTituloActionPerformed

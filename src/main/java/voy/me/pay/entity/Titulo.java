@@ -44,14 +44,14 @@ public class Titulo implements EntidadeBase {
     @Column(name="registroAtivo")
     private int registroAtivoTitulo;
     
-    //@ManyToOne(cascade = CascadeType.PERSIST)
-    //private TipoTitulo tipoTitulo;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private TipoTitulo tipoTitulo;
     
-    //@ManyToOne(cascade = CascadeType.PERSIST)
-    //private Categoria categoria;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Categoria categoria;
     
-    //@ManyToOne(cascade = CascadeType.PERSIST)
-    //private Pessoa pessoa;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Pessoa pessoa;
 
     @Override
     public Long getId() {

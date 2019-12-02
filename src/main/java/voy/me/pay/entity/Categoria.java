@@ -1,16 +1,18 @@
 package voy.me.pay.entity;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(schema = "mevoypay")
-public class Categoria implements EntidadeBase {
+public class Categoria implements EntidadeBase, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +25,8 @@ public class Categoria implements EntidadeBase {
     @Column(name="registroAtivo")
     private int registroAtivo;
     
-    //@OneToMany(mappedBy = "categoria")
-    //private List<Titulo> titulos;
+    @OneToMany(mappedBy = "categoria")
+    private List<Titulo> categoriaTitulos;
     
     @Override
     public Long getId() {
@@ -49,6 +51,14 @@ public class Categoria implements EntidadeBase {
 
     public void setRegistroAtivo(int registroAtivo) {
         this.registroAtivo = registroAtivo;
+    }
+
+    public List<Titulo> getCategoriaTitulos() {
+        return categoriaTitulos;
+    }
+
+    public void setCategoriaTitulos(List<Titulo> categoriaTitulos) {
+        this.categoriaTitulos = categoriaTitulos;
     }
    
     

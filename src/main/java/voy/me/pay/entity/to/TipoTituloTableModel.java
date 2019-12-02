@@ -16,8 +16,10 @@ import voy.me.pay.entity.TipoTitulo;
  */
 public class TipoTituloTableModel extends AbstractTableModel{
 
+    
+    
     TipoTituloDAO tipoTituloDao = new TipoTituloDAO();
-     List<TipoTitulo> listaTipoTitulo = tipoTituloDao.listarDados();
+    List<TipoTitulo> listaTipoTitulo = tipoTituloDao.listarDados();
      
      private String[] colunasTipoTitulo = {"ID", "Nome"};
     
