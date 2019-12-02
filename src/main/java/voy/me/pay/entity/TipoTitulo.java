@@ -22,8 +22,8 @@ public class TipoTitulo implements EntidadeBase, Serializable {
     @Column(name="nome")
     private String nome;
     
-    @OneToMany(mappedBy = "tipotitulo") //,targetEntity= Titulo.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Titulo> tipoTitulos;
+    //@OneToMany(mappedBy = "tipotitulo") //,targetEntity= Titulo.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //private List<Titulo> tipoTitulos;
 
     @Override
     public Long getId() {
@@ -42,14 +42,5 @@ public class TipoTitulo implements EntidadeBase, Serializable {
         this.nome = nome;
     }
 
-    public List<Titulo> getTipoTitulos() {
-        return tipoTitulos;
-    }
-
-    public void setTipoTitulos(List<Titulo> tipoTitulos) {
-        this.tipoTitulos = tipoTitulos;
-    }
-    
-    
     
 }
