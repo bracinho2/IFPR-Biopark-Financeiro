@@ -43,6 +43,9 @@ public class TelaPessoa extends javax.swing.JFrame {
         for (int i = 0; i < estados.size(); i++) {
             cbEstado.addItem(estados.get(i).getSigla());
         }
+        
+        //Setar botao cidade
+        cbCidade.addItem("Selecione");
 
     }
 
@@ -273,10 +276,9 @@ public class TelaPessoa extends javax.swing.JFrame {
 
     @SuppressWarnings("empty-statement")
     private void cbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEstadoActionPerformed
+        
         if (cbEstado.getSelectedIndex() > 0) {
             //cbCidade.removeAllItems();
-            
-            cbCidade.addItem("Selecione");
             
             int eSelecionado = cbEstado.getSelectedIndex()-1;
             Estado e = estados.get(eSelecionado);

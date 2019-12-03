@@ -175,6 +175,8 @@ public class TelaTipoTitulo extends javax.swing.JFrame {
                 tt.setNome(jtNome.getText());
 
                 tabelaTipoTitulo.addRow(cTipo.saveOrUpdate(tt));
+                
+                jtNome.setText("");
             }
 
         }
