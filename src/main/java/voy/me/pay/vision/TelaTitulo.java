@@ -220,7 +220,7 @@ public class TelaTitulo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSairActionPerformed
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_jbSairActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
@@ -278,7 +278,8 @@ public class TelaTitulo extends javax.swing.JFrame {
                 }
                                                 
                 t.setValor(Float.parseFloat(jtValor.getText()));
-                
+                t.setCategoriaTitulo((String) cbCategorias.getSelectedItem().toString());
+                                                
                 cTitulo.saveOrUpdate(t);
                 tabelaTitulo.updateRow();
 
@@ -325,6 +326,7 @@ public class TelaTitulo extends javax.swing.JFrame {
                 }
                                                 
                 t.setValor(Float.parseFloat(jtValor.getText()));
+                t.setCategoriaTitulo(cbCategorias.getSelectedItem().toString());
 
                 //insere o objeto na tabela e já encaminha para persistencia;
                 tabelaTitulo.addRow(cTitulo.saveOrUpdate(t));
@@ -363,6 +365,7 @@ public class TelaTitulo extends javax.swing.JFrame {
                 Object ativo = jTitulos.getValueAt(row, 6);
                 Object situacao = jTitulos.getValueAt(row, 7);
                 Object dataRegistro = jTitulos.getValueAt(row, 8).toString();
+                Object categoriaTitulo = jTitulos.getValueAt(row, 9).toString();
                 
                 //insere as informaçoes nos campos
                 jtDesc.setText((String) descricao);
@@ -386,9 +389,8 @@ public class TelaTitulo extends javax.swing.JFrame {
                     cbCategorias.setSelectedIndex(1);
                 }
                 
-                
-                //jcSituacao.setSelectedIndex((int) jTitulos.getValueAt(row, 7));
-                
+                //botao categoria
+                cbCategorias.setSelectedItem(categoriaTitulo);
 
             }
         } else {

@@ -70,7 +70,7 @@ public class TituloTableModel extends AbstractTableModel {
                 }
                 
             case 9:
-                return listaTitulos.get(linha).getCategoria();
+                return listaTitulos.get(linha).getCategoriaTitulo();
         }
 
         return null;

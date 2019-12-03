@@ -47,8 +47,13 @@ public class Titulo implements EntidadeBase {
     //@ManyToOne(cascade = CascadeType.PERSIST)
     //private TipoTitulo tipoTitulo;
     
+    @Column(name="categoria")
+    private String categoriaTitulo;
+    
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Categoria categoria;
+    
+    
     
     //@ManyToOne(cascade = CascadeType.PERSIST)
     //private Pessoa pessoa;
@@ -132,6 +137,14 @@ public class Titulo implements EntidadeBase {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public String getCategoriaTitulo() {
+        return categoriaTitulo;
+    }
+
+    public void setCategoriaTitulo(String categoriaTitulo) {
+        this.categoriaTitulo = categoriaTitulo;
     }
 
     
