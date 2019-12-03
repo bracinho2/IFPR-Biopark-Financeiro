@@ -9,6 +9,8 @@ import java.awt.Component;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,9 +46,12 @@ public class TelaTitulo extends javax.swing.JFrame {
         
         //botao listar categorias;
         ControllerCategoria c = new ControllerCategoria();
-        categorias = c.listCidade();
+        categorias = c.listaCategorias();
+        
+        //Ordenar lista de categorias no botao
+        
 
-        cbCategorias.addItem("");
+        cbCategorias.addItem("Selecione");
 
         for (int i = 0; i < categorias.size(); i++) {
             cbCategorias.addItem(categorias.get(i).getNome());

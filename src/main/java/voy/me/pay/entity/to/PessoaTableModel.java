@@ -56,12 +56,12 @@ public class PessoaTableModel extends AbstractTableModel {
             case 10:
                 return listaPessoas.get(linha).getEstado();
             case 11:
-                return listaPessoas.get(linha).getCliente();
+                return (listaPessoas.get(linha).getCliente() == 1) ? "Sim" : "Não";
             case 12:
-                return listaPessoas.get(linha).getFornecedor();
+                return (listaPessoas.get(linha).getFornecedor() == 1) ? "Sim" : "Não";
             case 13:
-                return listaPessoas.get(linha).getRegistroAtivo();
-            
+                 return (listaPessoas.get(linha).getRegistroAtivo() == 1) ? "Sim" : "Não";
+                
         }
         
         return null;

@@ -38,7 +38,7 @@ public class TelaPessoa extends javax.swing.JFrame {
         ControllerEstado e = new ControllerEstado();
         estados = e.listEstado();
 
-        cbEstado.addItem("");
+        cbEstado.addItem("Selecione");
 
         for (int i = 0; i < estados.size(); i++) {
             cbEstado.addItem(estados.get(i).getSigla());
@@ -274,7 +274,10 @@ public class TelaPessoa extends javax.swing.JFrame {
     @SuppressWarnings("empty-statement")
     private void cbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEstadoActionPerformed
         if (cbEstado.getSelectedIndex() > 0) {
-            cbCidade.removeAllItems();
+            //cbCidade.removeAllItems();
+            
+            cbCidade.addItem("Selecione");
+            
             int eSelecionado = cbEstado.getSelectedIndex()-1;
             Estado e = estados.get(eSelecionado);
             for(Cidade c: e.getCidade()){
@@ -342,14 +345,14 @@ public class TelaPessoa extends javax.swing.JFrame {
                 tableModelPessoas.updateRow();
 
                 //limpar campos;
-                pessoa.setNome("");
-                pessoa.setTelefone("");
-                pessoa.setCpfCnpj("");
-                pessoa.setEmail("");
-                pessoa.setEndereco("");
-                pessoa.setEnderecoNumero("");
-                pessoa.setBairro("");
-                pessoa.setComplemento("");
+                jtCpfCnpj.setText("");
+                jtEmail.setText("");
+                jtNome.setText("");
+                jtEndereco.setText("");
+                jtNumero.setText("");
+                jtBairro.setText("");
+                jtComplemento.setText("");
+                jtTelefone.setText("");
                 
 
             } else {
@@ -388,7 +391,7 @@ public class TelaPessoa extends javax.swing.JFrame {
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jcClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcClienteActionPerformed
@@ -420,6 +423,11 @@ public class TelaPessoa extends javax.swing.JFrame {
                 Object complemento = jtPessoas.getValueAt(row, 8);
                 Object cidade = jtPessoas.getValueAt(row, 9);
                 Object estado = jtPessoas.getValueAt(row, 10);
+                Object cliente = jtPessoas.getValueAt(row, 11);
+                Object fornecedor = jtPessoas.getValueAt(row, 12);
+                Object status = jtPessoas.getValueAt(row, 13);
+                
+                
 
                 //insere as informaçoes nos campos
                 jtCpfCnpj.setText((String) cpfCnpj);
@@ -431,10 +439,15 @@ public class TelaPessoa extends javax.swing.JFrame {
                 jtBairro.setText((String) bairro);
                 jtComplemento.setText((String) complemento);
 
-                //botoes
-                jcCliente.setSelectedIndex((int) jtPessoas.getValueAt(row, 11));
-                jcFornecedor.setSelectedIndex((int) jtPessoas.getValueAt(row, 12));
-                jcSituacao.setSelectedIndex((int) jtPessoas.getValueAt(row, 13));
+                //botoes cidade e estado;
+                cbEstado.setSelectedItem(estado);
+                cbCidade.setSelectedItem(cidade);
+                
+                //botoes para perfil da pessoa;
+                
+                jcCliente.setSelectedIndex(cliente.equals("Sim") ? 1 : 0);
+                jcFornecedor.setSelectedIndex(fornecedor.equals("Sim") ? 1 : 0 );
+                jcSituacao.setSelectedIndex(status.equals("Sim") ? 1 : 0);
 
             }
         } else {

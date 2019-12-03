@@ -18,7 +18,7 @@ public class ControllerCategoria {
         categoriaDao.remove(id);
     }
 
-    public List<Categoria> listCidade() {
+    public List<Categoria> listaCategorias() {
         return categoriaDao.listarDados();
 
     }

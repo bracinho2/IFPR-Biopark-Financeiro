@@ -191,7 +191,12 @@ public class TelaCategoria extends javax.swing.JFrame {
 
                 //coleta dados do formulario;
                 c.setNome(jtNome.getText());
-                c.setRegistroAtivo(jcStatus.getSelectedIndex());
+                if(jcStatus.getSelectedItem().equals("Ativa")){
+                    c.setRegistroAtivo(1);
+                } else {
+                    c.setRegistroAtivo(0);
+                }
+                
 
                 tableCategorias.addRow(cCategoria.saveOrUpdate(c));
             }
