@@ -37,7 +37,10 @@ public class CategoriaTableModel extends AbstractTableModel {
             case 1:
                 return listaCategoriasTableModel.get(linha).getNome();
             case 2:
-                return listaCategoriasTableModel.get(linha).getRegistroAtivo();
+                if (listaCategoriasTableModel.get(linha).getRegistroAtivo() == 1){
+                    return "Ativa";
+                } else
+                    return "Inativa";
             
         }
         
