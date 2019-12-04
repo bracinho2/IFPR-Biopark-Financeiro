@@ -1,9 +1,47 @@
+
+-- SQL Sistema Financeiro - IFPR-Biopark
+-- Discente: Alexandre Klock Ernzen
+
+
+--Inicia o Banco de Dados Básico
 drop schema mevoypay;
 
 create schema mevoypay;
 use mevoypay;
 
+-- Consultas
+select * from estado;
+select * from cidade;
+select * from pessoa;
+select * from tipotitulo;
+select * from titulo;
+select * from categoria;
+
+-- FimConsultas
+
+--Criação de Tabelas;
+
 create table Estado (id bigint not null, nome varchar(255), sigla varchar(255), primary key (id));
+
+create table Cidade (id bigint not null, nome varchar(255), estado_id bigint, primary key (id));
+
+create table Pessoa (primary key (id), id bigint not null auto_increment, nome varchar(255), cpfCnpj varchar(255), email varchar(255), telefone varchar(255), endereco varchar(255), enderecoNumero varchar(255), bairro varchar(255), complemento varchar(255), cidade varchar(255), estado varchar(255), cliente integer, fornecedor integer, registroAtivo integer );
+
+create table TipoTitulo (id bigint not null auto_increment, nome varchar(255), primary key (id));
+select * from tipotitulo;
+
+create table Titulo (id bigint not null auto_increment, primary key (id), descricao varchar(55), numeroTitulo integer, 
+numeroParcelasTitulo integer, dataHoraCadastro datetime, vencimento datetime, valor float, status varchar(55), registroAtivo integer);
+
+create table Categoria (id bigint not null auto_increment, primary key (id), nome varchar(55), titulo_id bigint, registroAtivo integer);
+
+
+
+
+insert into categoria (id, nome, registroAtivo) values (1, 'teste', 1);
+insert into categoria (id, nome, registroAtivo) values (2, 'oi', 1);
+insert into categoria (id, nome, registroAtivo) values (3, 'bla', 1);
+
 
 insert into estado (id, nome, sigla) VALUES (1, 'Acre', 'AC');
 insert into estado (id, nome, sigla) VALUES (2, 'Alagoas', 'AL');
