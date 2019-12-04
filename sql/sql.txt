@@ -5650,6 +5650,7 @@ alter table Pessoa add column cidade varchar(255);
 alter table Pessoa add column estado varchar(255)
 
 ***
+
 Tabela completa alterada;
 
 create table Pessoa (
