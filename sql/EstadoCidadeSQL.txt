@@ -1,48 +1,4 @@
-
--- SQL Sistema Financeiro - IFPR-Biopark
--- Discente: Alexandre Klock Ernzen
-
-
--- Inicia o Banco de Dados Básico
-drop schema mevoypay;
-
-create schema mevoypay;
-use mevoypay;
-
--- Consultas
-select * from estado;
-select * from cidade;
-select * from pessoa;
-select * from tipotitulo;
-select * from titulo;
-select * from categoria;
-
--- FimConsultas
-
--- Criação de Tabelas;
-
-create table Estado (id bigint not null, nome varchar(255), sigla varchar(255), primary key (id));
-
-create table Cidade (id bigint not null, nome varchar(255), estado_id bigint, primary key (id));
-
-create table Pessoa (primary key (id), id bigint not null auto_increment, nome varchar(255), cpfCnpj varchar(255), email varchar(255), telefone varchar(255), endereco varchar(255), enderecoNumero varchar(255), bairro varchar(255), complemento varchar(255), cidade varchar(255), estado varchar(255), cliente integer, fornecedor integer, registroAtivo integer );
-
-create table TipoTitulo (id bigint not null auto_increment, nome varchar(255), primary key (id));
-select * from tipotitulo;
-
-create table Titulo (id bigint not null auto_increment, primary key (id), descricao varchar(55), numeroTitulo integer, 
-numeroParcelasTitulo integer, dataHoraCadastro datetime, vencimento datetime, valor float, status varchar(55), registroAtivo integer);
-
-create table Categoria (id bigint not null auto_increment, primary key (id), nome varchar(55), titulo_id bigint, registroAtivo integer);
-
-
-
-
-insert into categoria (id, nome, registroAtivo) values (1, 'teste', 1);
-insert into categoria (id, nome, registroAtivo) values (2, 'oi', 1);
-insert into categoria (id, nome, registroAtivo) values (3, 'bla', 1);
-
-
+-- Estados do Brasil
 insert into estado (id, nome, sigla) VALUES (1, 'Acre', 'AC');
 insert into estado (id, nome, sigla) VALUES (2, 'Alagoas', 'AL');
 insert into estado (id, nome, sigla) VALUES (3, 'Amapá', 'AP');
@@ -71,7 +27,7 @@ insert into estado (id, nome, sigla) VALUES (25, 'São Paulo', 'SP');
 insert into estado (id, nome, sigla) VALUES (26, 'Sergipe', 'SE');
 insert into estado (id, nome, sigla) VALUES (27, 'Tocantins', 'TO');
 
-
+-- Cidades do Brasil
 insert into cidade (id, nome, estado_id) values (1, 'Acrelândia', 1);
 insert into cidade (id, nome, estado_id) values (2, 'Assis Brasil', 1);
 insert into cidade (id, nome, estado_id) values (3, 'Brasiléia', 1);
@@ -5638,67 +5594,3 @@ insert into cidade (id, nome, estado_id) values (5563, 'Figueirão', 12);
 insert into cidade (id, nome, estado_id) values (5564, 'Ipiranga do Norte', 11);
 insert into cidade (id, nome, estado_id) values (5566, 'Alto Paraíso', 16);
 insert into cidade (id, nome, estado_id) values (5565, 'Itanhangá', 11);
-
-select * from cidade;
-
-create table Pessoa (id bigint not null auto_increment, bairro varchar(255), cliente integer, complemento varchar(255), cpfCnpj varchar(255), email varchar(255), endereco varchar(255), enderecoNumero varchar(255), fornecedor integer, nome varchar(255), registroAtivo integer, telefone varchar(255), primary key (id));
-
-alter table Pessoa add column cidade varchar(255);
-alter table Pessoa add column estado varchar(255)
-
-***
-
-Tabela completa alterada;
-
-create table Pessoa (
-primary key (id),
-id bigint not null auto_increment, 
-nome varchar(255), 
-cpfCnpj varchar(255), 
-email varchar(255), 
-telefone varchar(255), 
-endereco varchar(255), 
-enderecoNumero varchar(255), 
-bairro varchar(255), 
-complemento varchar(255), 
-cidade varchar(255),
-estado varchar(255),
-cliente integer, 
-fornecedor integer, 
-registroAtivo integer 
- 
-);
-
-create table TipoTitulo (id bigint not null auto_increment, nome varchar(255), primary key (id));
-select * from tipotitulo;
-
-create table Titulo (
-id bigint not null auto_increment,
-primary key (id),
-descricao varchar(55),
-numeroTitulo integer, 
-numeroParcelasTitulo integer,
-dataHoraCadastro datetime, 
-vencimento datetime,
-valor float, 
-status varchar(55), 
-registroAtivo integer
-);
-
-select * from titulo;
-drop table titulo;
-
-create table Categoria (
-id bigint not null auto_increment,
-primary key (id),
-nome varchar(55),
-titulo_id bigint
-registroAtivo integer
-);
-
-select * from categoria;
-drop table categoria;
-insert into categoria (id, nome, registroAtivo) values (1, 'teste', 1);
-insert into categoria (id, nome, registroAtivo) values (2, 'oi', 1);
-insert into categoria (id, nome, registroAtivo) values (3, 'bla', 1);
-
