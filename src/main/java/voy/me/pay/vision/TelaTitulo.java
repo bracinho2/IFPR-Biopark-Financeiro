@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,12 +48,17 @@ public class TelaTitulo extends javax.swing.JFrame {
         MaskFormatter maskRegistro = new MaskFormatter("##/##/####");  
         maskRegistro.install(jfDataRegistro);
         
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        jfDataRegistro.setText(sdf.format(new Date()));
+        
         MaskFormatter maskVencimento = new MaskFormatter("##/##/####");        
         maskVencimento.install(jfVencimento);
         
         //botao listar categorias;
         ControllerCategoria c = new ControllerCategoria();
         categorias = c.listarAtivas();
+        
+        Collections.sort(categorias, null);
         
         cbCategorias.addItem("Selecione");
 
@@ -63,6 +69,8 @@ public class TelaTitulo extends javax.swing.JFrame {
         //botao tipo de titulo
         ControllerTipoTitulo tTitulo = new ControllerTipoTitulo();
         tipoTitulos = tTitulo.listTipoTitulo();
+        
+        Collections.sort(tipoTitulos, null);
         
         cbTipoTitulo.addItem("Selecione");
         for (int i = 0; i < tipoTitulos.size(); i++) {
@@ -166,6 +174,11 @@ public class TelaTitulo extends javax.swing.JFrame {
         jfVencimento.setBorder(javax.swing.BorderFactory.createTitledBorder("Vencimento"));
 
         jfDataRegistro.setBorder(javax.swing.BorderFactory.createTitledBorder("Data Registro"));
+        jfDataRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jfDataRegistroActionPerformed(evt);
+            }
+        });
 
         jcAtivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não", "Sim" }));
         jcAtivo.setBorder(javax.swing.BorderFactory.createTitledBorder("Ativo"));
@@ -476,6 +489,10 @@ public class TelaTitulo extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jbExcluirActionPerformed
+
+    private void jfDataRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jfDataRegistroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jfDataRegistroActionPerformed
 
     /**
      * @param args the command line arguments

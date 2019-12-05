@@ -199,6 +199,7 @@ public class TelaCategoria extends javax.swing.JFrame {
                 
 
                 tableCategorias.addRow(cCategoria.saveOrUpdate(c));
+                JOptionPane.showMessageDialog(this, "Categoria Salva com Sucesso! =)");
             }
 
         }
