@@ -339,6 +339,7 @@ public class TelaTitulo extends javax.swing.JFrame {
                 t.setValor(Float.parseFloat(jtValor.getText()));
                 t.setCategoriaTitulo((String) cbCategorias.getSelectedItem().toString());
                 t.setTipoTituloTitulo((String) cbTipoTitulo.getSelectedItem().toString());
+                t.setPessoaTitulo((String)cbPessoas.getSelectedItem().toString());
                 
                                                 
                 cTitulo.saveOrUpdate(t);
@@ -353,6 +354,7 @@ public class TelaTitulo extends javax.swing.JFrame {
                 jtValor.setText("");
                 jcAtivo.setSelectedIndex(0);
                 cbTipoTitulo.setSelectedIndex(0);
+                cbPessoas.setSelectedIndex(0);
 
             } else {
 
@@ -389,6 +391,7 @@ public class TelaTitulo extends javax.swing.JFrame {
                 t.setValor(Float.parseFloat(jtValor.getText()));
                 t.setCategoriaTitulo(cbTipoTitulo.getSelectedItem().toString());
                 t.setTipoTituloTitulo(cbTipoTitulo.getSelectedItem().toString());
+                t.setPessoaTitulo(cbPessoas.getSelectedItem().toString());
                 
 
                 //insere o objeto na tabela e já encaminha para persistencia;

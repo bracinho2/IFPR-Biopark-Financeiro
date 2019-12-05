@@ -61,6 +61,9 @@ public class Titulo implements EntidadeBase {
     
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Pessoa pessoa;
+    
+    @Column(name="pessoa")
+    private String pessoaTitulo;
 
     @Override
     public Long getId() {
@@ -173,6 +176,14 @@ public class Titulo implements EntidadeBase {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public String getPessoaTitulo() {
+        return pessoaTitulo;
+    }
+
+    public void setPessoaTitulo(String pessoaTitulo) {
+        this.pessoaTitulo = pessoaTitulo;
     }
 
     
