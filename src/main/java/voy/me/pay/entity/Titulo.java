@@ -59,8 +59,8 @@ public class Titulo implements EntidadeBase {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Categoria categoria;
     
-    //@ManyToOne(cascade = CascadeType.PERSIST)
-    //private Pessoa pessoa;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Pessoa pessoa;
 
     @Override
     public Long getId() {
@@ -151,7 +151,31 @@ public class Titulo implements EntidadeBase {
         this.categoriaTitulo = categoriaTitulo;
     }
 
-   
+    public String getTipoTituloTitulo() {
+        return tipoTituloTitulo;
+    }
+
+    public void setTipoTituloTitulo(String tipoTituloTitulo) {
+        this.tipoTituloTitulo = tipoTituloTitulo;
+    }
+
+    public TipoTitulo getTipoTitulo() {
+        return tipoTitulo;
+    }
+
+    public void setTipoTitulo(TipoTitulo tipoTitulo) {
+        this.tipoTitulo = tipoTitulo;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    
        
     
 }

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(schema = "mevoypay")
-public class Categoria implements EntidadeBase, Serializable {
+public class Categoria implements EntidadeBase, Serializable, Comparable<Categoria> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,6 +59,11 @@ public class Categoria implements EntidadeBase, Serializable {
 
     public void setCategoriaTitulos(List<Titulo> categoriaTitulos) {
         this.categoriaTitulos = categoriaTitulos;
+    }
+
+    @Override
+    public int compareTo(Categoria o) {
+        return getNome().compareTo(o.getNome());
     }
 
     

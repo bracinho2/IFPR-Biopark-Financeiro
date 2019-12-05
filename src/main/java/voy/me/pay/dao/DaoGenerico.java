@@ -33,6 +33,8 @@ public class DaoGenerico<T extends EntidadeBase> {
 
         return lista;
     }
+    
+    
 
     //Metodo de busca por ID;
     public T findById(Long id) {

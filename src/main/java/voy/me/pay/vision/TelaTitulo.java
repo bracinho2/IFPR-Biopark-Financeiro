@@ -18,9 +18,11 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 import voy.me.pay.control.ControllerCategoria;
+import voy.me.pay.control.ControllerPessoa;
 import voy.me.pay.control.ControllerTipoTitulo;
 import voy.me.pay.control.ControllerTitulo;
 import voy.me.pay.entity.Categoria;
+import voy.me.pay.entity.Pessoa;
 import voy.me.pay.entity.TipoTitulo;
 import voy.me.pay.entity.Titulo;
 import voy.me.pay.entity.to.TituloTableModel;
@@ -35,6 +37,7 @@ public class TelaTitulo extends javax.swing.JFrame {
     
     List<Categoria> categorias = new ArrayList();
     List<TipoTitulo> tipoTitulos = new ArrayList();
+    List<Pessoa> pessoas = new ArrayList();
     
     public TelaTitulo() throws ParseException {
         initComponents();
@@ -49,7 +52,7 @@ public class TelaTitulo extends javax.swing.JFrame {
         
         //botao listar categorias;
         ControllerCategoria c = new ControllerCategoria();
-        categorias = c.listaCategorias();
+        categorias = c.listarAtivas();
         
         cbCategorias.addItem("Selecione");
 
@@ -65,6 +68,18 @@ public class TelaTitulo extends javax.swing.JFrame {
         for (int i = 0; i < tipoTitulos.size(); i++) {
             cbTipoTitulo.addItem(tipoTitulos.get(i).getNome());
         }
+        
+        //botao pessoa;
+        ControllerPessoa cPessoa = new ControllerPessoa();
+        pessoas = cPessoa.listPessoa();
+        
+        Collections.sort(pessoas, null);
+        
+        cbPessoas.addItem("Selecione");
+        for (int i = 0; i < pessoas.size(); i++){
+            cbPessoas.addItem(pessoas.get(i).getNome());
+        }
+        
     }
     
     
@@ -94,8 +109,10 @@ public class TelaTitulo extends javax.swing.JFrame {
         cbTipoTitulo = new javax.swing.JComboBox<>();
         jcSituacao1 = new javax.swing.JComboBox<>();
         cbCategorias = new javax.swing.JComboBox<>();
+        cbPessoas = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jtDesc.setBorder(javax.swing.BorderFactory.createTitledBorder("Descricao"));
 
@@ -160,6 +177,8 @@ public class TelaTitulo extends javax.swing.JFrame {
 
         cbCategorias.setBorder(javax.swing.BorderFactory.createTitledBorder("Categoria"));
 
+        cbPessoas.setBorder(javax.swing.BorderFactory.createTitledBorder("Pessoa"));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -196,18 +215,20 @@ public class TelaTitulo extends javax.swing.JFrame {
                                         .addComponent(jtNumeroTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(49, 49, 49))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(168, Short.MAX_VALUE)
-                .addComponent(jcAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jcSituacao1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbTipoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(155, 155, 155))
+                                .addGap(0, 219, Short.MAX_VALUE)))
+                        .addGap(49, 49, 49))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jcAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jcSituacao1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbTipoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbPessoas, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +248,8 @@ public class TelaTitulo extends javax.swing.JFrame {
                     .addComponent(jcAtivo)
                     .addComponent(cbTipoTitulo)
                     .addComponent(jcSituacao1)
-                    .addComponent(cbCategorias))
+                    .addComponent(cbCategorias)
+                    .addComponent(cbPessoas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbSalvar)
@@ -302,7 +324,9 @@ public class TelaTitulo extends javax.swing.JFrame {
                 }
                                                 
                 t.setValor(Float.parseFloat(jtValor.getText()));
-                t.setCategoriaTitulo((String) cbTipoTitulo.getSelectedItem().toString());
+                t.setCategoriaTitulo((String) cbCategorias.getSelectedItem().toString());
+                t.setTipoTituloTitulo((String) cbTipoTitulo.getSelectedItem().toString());
+                
                                                 
                 cTitulo.saveOrUpdate(t);
                 tabelaTitulo.updateRow();
@@ -351,6 +375,8 @@ public class TelaTitulo extends javax.swing.JFrame {
                                                 
                 t.setValor(Float.parseFloat(jtValor.getText()));
                 t.setCategoriaTitulo(cbTipoTitulo.getSelectedItem().toString());
+                t.setTipoTituloTitulo(cbTipoTitulo.getSelectedItem().toString());
+                
 
                 //insere o objeto na tabela e já encaminha para persistencia;
                 tabelaTitulo.addRow(cTitulo.saveOrUpdate(t));
@@ -492,6 +518,7 @@ public class TelaTitulo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbCategorias;
+    private javax.swing.JComboBox<String> cbPessoas;
     private javax.swing.JComboBox<String> cbTipoTitulo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTitulos;

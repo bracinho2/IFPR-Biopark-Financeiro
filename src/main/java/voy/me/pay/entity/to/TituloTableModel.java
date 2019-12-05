@@ -15,7 +15,7 @@ public class TituloTableModel extends AbstractTableModel {
     List<Titulo> listaTitulos = tituloDao.listarDados();
 
     private String[] nomeColunasTitulo = {"ID", "Descricao", "Valor", "Vencimento", "Parcelas",
-        "Numero", "Ativo", "Status", "Registro", "Categoria", "Tipo Titulo"};
+        "Numero", "Ativo", "Status", "Registro", "Categoria", "Tipo Titulo", "Pessoa"};
 
     @Override
     public String getColumnName(int column) {
@@ -70,7 +70,9 @@ public class TituloTableModel extends AbstractTableModel {
             case 9:
                 return listaTitulos.get(linha).getCategoriaTitulo();
             case 10:
-                return null;
+                return listaTitulos.get(linha).getTipoTituloTitulo();
+            case 11:
+                return listaTitulos.get(linha).getPessoa();
         }
 
         return null;

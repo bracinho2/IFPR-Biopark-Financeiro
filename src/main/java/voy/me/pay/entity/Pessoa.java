@@ -2,6 +2,7 @@ package voy.me.pay.entity;
 
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,7 +20,7 @@ import javax.persistence.Table;
 //As marcações da JPA atuam como identificação para a manipulação de dados junto ao SGDB;
 @Entity
 @Table(schema = "mevoypay")
-public class Pessoa implements EntidadeBase, Serializable {
+public class Pessoa implements EntidadeBase, Serializable, Comparable<Pessoa> {
     
        
     @Id
@@ -66,8 +67,8 @@ public class Pessoa implements EntidadeBase, Serializable {
     @Column(name="registroAtivo")
     private int registroAtivo;
     
-    //@OneToMany(mappedBy = "pessoa")
-    //private List<Titulo> titulos;
+    @OneToMany(mappedBy = "pessoa")
+    private List<Titulo> titulos;
 
     @Override
     public Long getId() {
@@ -180,6 +181,11 @@ public class Pessoa implements EntidadeBase, Serializable {
 
     public void setRegistroAtivo(int registroAtivo) {
         this.registroAtivo = registroAtivo;
+    }
+
+    @Override
+    public int compareTo(Pessoa o) {
+        return getNome().compareTo(o.getNome());
     }
 
         

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(schema = "mevoypay")
-public class TipoTitulo implements EntidadeBase, Serializable {
+public class TipoTitulo implements EntidadeBase, Serializable, Comparable<TipoTitulo> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +22,8 @@ public class TipoTitulo implements EntidadeBase, Serializable {
     @Column(name="nome")
     private String nome;
     
-    //@OneToMany(mappedBy = "tipotitulo")
-    //private List<Titulo> titulosTipoTitulo;
+    @OneToMany(mappedBy = "tipoTitulo")
+    private List<Titulo> titulosTipoTitulo;
 
     @Override
     public Long getId() {
@@ -48,6 +48,11 @@ public class TipoTitulo implements EntidadeBase, Serializable {
 
     public void setTitulosTipoTitulo(List<Titulo> titulosTipoTitulo) {
         this.titulosTipoTitulo = titulosTipoTitulo;
+    }
+
+    @Override
+    public int compareTo(TipoTitulo o) {
+        return getNome().compareTo(o.getNome());
     }
 
     

@@ -26,5 +26,9 @@ public class ControllerCategoria {
     public List<Categoria> listCategoria(Long id){
         return categoriaDao.findByFilter("estado_id", "" + id);
     }
-    //
+    
+    public List<Categoria> listarAtivas (){
+        return categoriaDao.listaCategoriaAtiva();
+    }
+    
 }
