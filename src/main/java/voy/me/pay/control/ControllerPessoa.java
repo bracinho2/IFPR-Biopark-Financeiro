@@ -1,5 +1,6 @@
 package voy.me.pay.control;
 
+import java.util.Collections;
 import java.util.List;
 import voy.me.pay.dao.PessoaDAO;
 import voy.me.pay.entity.Pessoa;
@@ -18,8 +19,16 @@ public class ControllerPessoa {
     }
 
     public List<Pessoa> listPessoa() {
-        return pessoaDao.listarDados();
+        List<Pessoa> lista = pessoaDao.listarDados();
+        Collections.sort(lista);
+        return lista;
         
+    }
+
+    public List<Pessoa> findByFilter(String nome, String text) {
+        List<Pessoa> lista = pessoaDao.findByFilter(nome, text);
+        Collections.sort(lista);
+        return lista;
     }
 
 }

@@ -17,6 +17,11 @@ public class TituloTableModel extends AbstractTableModel {
     private String[] nomeColunasTitulo = {"ID", "Descricao", "Valor", "Vencimento", "Parcelas",
         "Numero", "Ativo", "Status", "Registro", "Categoria", "Tipo Titulo", "Pessoa"};
 
+    
+
+    
+    
+    
     @Override
     public String getColumnName(int column) {
         return nomeColunasTitulo[column];

@@ -73,20 +73,12 @@ public class DaoGenerico<T extends EntidadeBase> {
         }
     }
     
-    public List<T> findByFilter(String campo, String filtro){
-        CriteriaBuilder builder = manager.getCriteriaBuilder();
-        CriteriaQuery<T> query = builder.createQuery(classe);
-        query.from(classe);
+    public List<T> findByFilter(String campo, String text){
+        String sql = "select c from " + classe.getName() + " c where c." + campo + " like :filtro";
+        System.out.println(sql);
+        return manager.createQuery(sql, classe).setParameter("filtro", "%" + text + "%").getResultList();
+
         
-        Root<T> root = query.from(classe);
-        
-        Predicate igual = root.get(campo).in(filtro);
-                
-        query.where(builder.and(igual));
-                                
-        List<T> lista = manager.createQuery(query).getResultList();
-        
-        return lista;
     }
 
 }

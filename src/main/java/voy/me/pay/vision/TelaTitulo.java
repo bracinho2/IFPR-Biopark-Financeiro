@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.text.MaskFormatter;
 import voy.me.pay.control.ControllerCategoria;
 import voy.me.pay.control.ControllerPessoa;
@@ -40,10 +41,31 @@ public class TelaTitulo extends javax.swing.JFrame {
     List<TipoTitulo> tipoTitulos = new ArrayList();
     List<Pessoa> pessoas = new ArrayList();
     
+    
+    
+    
     public TelaTitulo() throws ParseException {
         initComponents();
         
+        //seta modelo da tabela;
         jTitulos.setModel(tabelaTitulo);
+        
+        //seta os tamanhos das colunas da tabela;
+        jTitulos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+        jTitulos.getColumnModel().getColumn(0).setMinWidth(1);
+        jTitulos.getColumnModel().getColumn(1).setMinWidth(0);
+        jTitulos.getColumnModel().getColumn(2).setMinWidth(0);
+        jTitulos.getColumnModel().getColumn(3).setMinWidth(0);
+        jTitulos.getColumnModel().getColumn(4).setMinWidth(0);
+        jTitulos.getColumnModel().getColumn(5).setMinWidth(0);
+        jTitulos.getColumnModel().getColumn(6).setMinWidth(0);
+        jTitulos.getColumnModel().getColumn(7).setMinWidth(0);
+        jTitulos.getColumnModel().getColumn(8).setMinWidth(0);
+        jTitulos.getColumnModel().getColumn(9).setMinWidth(0);
+        jTitulos.getColumnModel().getColumn(10).setMinWidth(0);
+        jTitulos.getColumnModel().getColumn(11).setMinWidth(0);
+        
         
         MaskFormatter maskRegistro = new MaskFormatter("##/##/####");  
         maskRegistro.install(jfDataRegistro);
@@ -115,7 +137,7 @@ public class TelaTitulo extends javax.swing.JFrame {
         jfDataRegistro = new javax.swing.JFormattedTextField();
         jcAtivo = new javax.swing.JComboBox<>();
         cbTipoTitulo = new javax.swing.JComboBox<>();
-        jcSituacao1 = new javax.swing.JComboBox<>();
+        cbSituacao = new javax.swing.JComboBox<>();
         cbCategorias = new javax.swing.JComboBox<>();
         cbPessoas = new javax.swing.JComboBox<>();
 
@@ -135,6 +157,7 @@ public class TelaTitulo extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTitulos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPane1.setViewportView(jTitulos);
 
         jtParcelas.setBorder(javax.swing.BorderFactory.createTitledBorder("Numero de Parcelas"));
@@ -180,17 +203,27 @@ public class TelaTitulo extends javax.swing.JFrame {
             }
         });
 
-        jcAtivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não", "Sim" }));
+        jcAtivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sim", "Não" }));
         jcAtivo.setBorder(javax.swing.BorderFactory.createTitledBorder("Ativo"));
+        jcAtivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcAtivoActionPerformed(evt);
+            }
+        });
 
         cbTipoTitulo.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de Título"));
 
-        jcSituacao1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendente", "Liquidado" }));
-        jcSituacao1.setBorder(javax.swing.BorderFactory.createTitledBorder("Situação"));
+        cbSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendente", "Liquidado" }));
+        cbSituacao.setBorder(javax.swing.BorderFactory.createTitledBorder("Situação"));
 
         cbCategorias.setBorder(javax.swing.BorderFactory.createTitledBorder("Categoria"));
 
         cbPessoas.setBorder(javax.swing.BorderFactory.createTitledBorder("Pessoa"));
+        cbPessoas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbPessoasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,7 +267,7 @@ public class TelaTitulo extends javax.swing.JFrame {
                         .addGap(44, 44, 44)
                         .addComponent(jcAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcSituacao1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -260,7 +293,7 @@ public class TelaTitulo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                     .addComponent(jcAtivo)
                     .addComponent(cbTipoTitulo)
-                    .addComponent(jcSituacao1)
+                    .addComponent(cbSituacao)
                     .addComponent(cbCategorias)
                     .addComponent(cbPessoas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -355,6 +388,9 @@ public class TelaTitulo extends javax.swing.JFrame {
                 jcAtivo.setSelectedIndex(0);
                 cbTipoTitulo.setSelectedIndex(0);
                 cbPessoas.setSelectedIndex(0);
+                
+                Component frame = null;
+                JOptionPane.showMessageDialog(frame, "Salvo com Sucesso!");
 
             } else {
 
@@ -407,6 +443,9 @@ public class TelaTitulo extends javax.swing.JFrame {
                 jtValor.setText("");
                 jcAtivo.setSelectedIndex(0);
                 cbTipoTitulo.setSelectedIndex(0);
+                
+                Component frame = null;
+                JOptionPane.showMessageDialog(frame, "Salvo com Sucesso!");
             }
 
         }
@@ -432,6 +471,8 @@ public class TelaTitulo extends javax.swing.JFrame {
                 Object situacao = jTitulos.getValueAt(row, 7);
                 Object dataRegistro = jTitulos.getValueAt(row, 8).toString();
                 Object categoriaTitulo = jTitulos.getValueAt(row, 9).toString();
+                Object tipoTitulo = jTitulos.getValueAt(row, 10).toString();
+                Object pessoaTitulo = jTitulos.getValueAt(row, 11).toString();
                 
                 //insere as informaçoes nos campos
                 jtDesc.setText((String) descricao);
@@ -449,14 +490,16 @@ public class TelaTitulo extends javax.swing.JFrame {
                 }
                 
                 //botao situacao
-                if(situacao.equals("Pendente")){
-                    cbTipoTitulo.setSelectedIndex(0);
-                } else {
-                    cbTipoTitulo.setSelectedIndex(1);
-                }
+                cbSituacao.setSelectedItem(situacao);
                 
                 //botao categoria
-                cbTipoTitulo.setSelectedItem(categoriaTitulo);
+                cbCategorias.setSelectedItem(categoriaTitulo);
+                
+                //botao tipo titulo
+                cbTipoTitulo.setSelectedItem(tipoTitulo);
+                
+                //botao pessoa
+                cbPessoas.setSelectedItem(pessoaTitulo);
 
             }
         } else {
@@ -496,6 +539,14 @@ public class TelaTitulo extends javax.swing.JFrame {
     private void jfDataRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jfDataRegistroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jfDataRegistroActionPerformed
+
+    private void jcAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcAtivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcAtivoActionPerformed
+
+    private void cbPessoasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPessoasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbPessoasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -539,6 +590,7 @@ public class TelaTitulo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbCategorias;
     private javax.swing.JComboBox<String> cbPessoas;
+    private javax.swing.JComboBox<String> cbSituacao;
     private javax.swing.JComboBox<String> cbTipoTitulo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTitulos;
@@ -547,7 +599,6 @@ public class TelaTitulo extends javax.swing.JFrame {
     private javax.swing.JButton jbSair;
     private javax.swing.JButton jbSalvar;
     private javax.swing.JComboBox<String> jcAtivo;
-    private javax.swing.JComboBox<String> jcSituacao1;
     private javax.swing.JFormattedTextField jfDataRegistro;
     private javax.swing.JFormattedTextField jfVencimento;
     private javax.swing.JTextField jtDesc;
