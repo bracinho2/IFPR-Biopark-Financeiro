@@ -18,7 +18,7 @@ public class ControllerTitulo {
         tituloDao.remove(id);
     }
 
-    public List<Titulo> listTipoTitulo() {
+    public List<Titulo> listaTitulos() {
         return tituloDao.listarDados();
 
     }

@@ -7,6 +7,7 @@ package voy.me.pay.entity.to;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+import voy.me.pay.control.ControllerTipoTitulo;
 import voy.me.pay.dao.TipoTituloDAO;
 import voy.me.pay.entity.TipoTitulo;
 
@@ -16,8 +17,8 @@ import voy.me.pay.entity.TipoTitulo;
  */
 public class TipoTituloTableModel extends AbstractTableModel{
 
-    TipoTituloDAO tipoTituloDao = new TipoTituloDAO();
-    List<TipoTitulo> listaTipoTitulo = tipoTituloDao.listarDados();
+    ControllerTipoTitulo tipoTituloDao = new ControllerTipoTitulo();
+    List<TipoTitulo> listaTipoTitulo = tipoTituloDao.listTipoTitulo();
      
      private String[] colunasTipoTitulo = {"ID", "Nome"};
     

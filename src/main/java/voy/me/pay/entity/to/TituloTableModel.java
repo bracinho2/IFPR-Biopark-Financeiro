@@ -3,7 +3,7 @@ package voy.me.pay.entity.to;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import voy.me.pay.dao.TituloDAO;
+import voy.me.pay.control.ControllerTitulo;
 import voy.me.pay.entity.Titulo;
 
 public class TituloTableModel extends AbstractTableModel {
@@ -11,17 +11,12 @@ public class TituloTableModel extends AbstractTableModel {
     SimpleDateFormat dataVencimento = new SimpleDateFormat("dd/MM/yyyy");
     SimpleDateFormat dataRegistro = new SimpleDateFormat("dd/MM/yyyy");
 
-    TituloDAO tituloDao = new TituloDAO();
-    List<Titulo> listaTitulos = tituloDao.listarDados();
+    ControllerTitulo titulos = new ControllerTitulo();
+    List<Titulo> listaTitulos = titulos.listaTitulos();
 
     private String[] nomeColunasTitulo = {"ID", "Descricao", "Valor", "Vencimento", "Parcelas",
         "Numero", "Ativo", "Status", "Registro", "Categoria", "Tipo Titulo", "Pessoa"};
 
-    
-
-    
-    
-    
     @Override
     public String getColumnName(int column) {
         return nomeColunasTitulo[column];
