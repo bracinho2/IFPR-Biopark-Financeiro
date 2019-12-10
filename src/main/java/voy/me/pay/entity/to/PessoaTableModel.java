@@ -3,14 +3,13 @@ package voy.me.pay.entity.to;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import voy.me.pay.control.ControllerPessoa;
-import voy.me.pay.dao.PessoaDAO;
 import voy.me.pay.entity.Pessoa;
 
 public class PessoaTableModel extends AbstractTableModel {
     
     ControllerPessoa p = new ControllerPessoa();
     
-    List<Pessoa> listaPessoas = p.listPessoa();
+    List<Pessoa> listaPessoas = p.simpleList();
     
     
     

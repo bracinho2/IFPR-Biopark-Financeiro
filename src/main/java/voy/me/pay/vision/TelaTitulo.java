@@ -101,7 +101,7 @@ public class TelaTitulo extends javax.swing.JFrame {
         
         //botao pessoa;
         ControllerPessoa cPessoa = new ControllerPessoa();
-        pessoas = cPessoa.listPessoa();
+        pessoas = cPessoa.simpleList();
         
         Collections.sort(pessoas, null);
         
@@ -373,6 +373,7 @@ public class TelaTitulo extends javax.swing.JFrame {
                 t.setCategoriaTitulo((String) cbCategorias.getSelectedItem().toString());
                 t.setTipoTituloTitulo((String) cbTipoTitulo.getSelectedItem().toString());
                 t.setPessoaTitulo((String)cbPessoas.getSelectedItem().toString());
+                t.setPessoa(pessoas.get(cbPessoas.getSelectedIndex()-1));
                 
                                                 
                 cTitulo.saveOrUpdate(t);
@@ -428,6 +429,8 @@ public class TelaTitulo extends javax.swing.JFrame {
                 t.setCategoriaTitulo(cbTipoTitulo.getSelectedItem().toString());
                 t.setTipoTituloTitulo(cbTipoTitulo.getSelectedItem().toString());
                 t.setPessoaTitulo(cbPessoas.getSelectedItem().toString());
+                t.setPessoa(pessoas.get(cbPessoas.getSelectedIndex()-1));
+                
                 
 
                 //insere o objeto na tabela e já encaminha para persistencia;
@@ -500,6 +503,12 @@ public class TelaTitulo extends javax.swing.JFrame {
                 
                 //botao pessoa
                 cbPessoas.setSelectedItem(pessoaTitulo);
+                
+                for(int i = 0; i > pessoas.size(); i++){
+                    if(tabelaTitulo.getIdPessoa(row) == pessoas.get(i).getId()){
+                        cbPessoas.setSelectedIndex(i+1);
+                    }
+                }
 
             }
         } else {

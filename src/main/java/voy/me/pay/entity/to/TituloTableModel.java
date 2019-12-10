@@ -72,11 +72,16 @@ public class TituloTableModel extends AbstractTableModel {
             case 10:
                 return listaTitulos.get(linha).getTipoTituloTitulo();
             case 11:
-                return listaTitulos.get(linha).getPessoaTitulo();
+                return listaTitulos.get(linha).getPessoa().getNome();
+                //return listaTitulos.get(linha).getPessoaTitulo();
         }
 
         return null;
 
+    }
+    
+    public Long getIdPessoa(int linha){
+        return listaTitulos.get(linha).getPessoa().getId();
     }
 
     public void addRow(Titulo t) {
