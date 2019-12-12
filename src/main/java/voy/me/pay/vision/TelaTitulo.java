@@ -67,7 +67,7 @@ public class TelaTitulo extends javax.swing.JFrame {
         
         //botao listar categorias;
         ControllerCategoria c = new ControllerCategoria();
-        categorias = c.listarAtivas();
+        categorias = c.simpleList();//listarAtivas();
         
         Collections.sort(categorias, null);
         for (int i = 0; i < categorias.size(); i++) {
@@ -425,7 +425,7 @@ public class TelaTitulo extends javax.swing.JFrame {
                 t.setValor(Float.parseFloat(jtValor.getText()));
                 t.setCategoria((Categoria) cbCategorias.getSelectedItem());
                 t.setTipoTitulo((TipoTitulo) cbTipoTitulo.getSelectedItem());
-                //t.setPessoa((Pessoa) cbPessoas.getSelectedItem());
+                t.setPessoa((Pessoa) cbPessoas.getSelectedItem());
                 
                 //insere o objeto na tabela e já encaminha para persistencia;
                 tabelaTitulo.addRow(cTitulo.saveOrUpdate(t));
