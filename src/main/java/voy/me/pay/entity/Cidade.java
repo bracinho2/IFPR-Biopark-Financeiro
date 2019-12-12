@@ -49,16 +49,6 @@ public class Cidade implements EntidadeBase, Serializable{
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
-    
-//    public ArrayList<Pessoa> getPessoas() {
-//        return pessoas;
-//    }
-//
-//    public void setPessoas(ArrayList<Pessoa> pessoas) {
-//        this.pessoas = pessoas;
-//    }
-
-   
-   
+ 
 
 }

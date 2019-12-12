@@ -68,7 +68,12 @@ public class TituloTableModel extends AbstractTableModel {
                     return null;
                 }
             case 9:
-                return listaTitulos.get(linha).getCategoriaTitulo();
+                if(listaTitulos.get(linha).getCategoria() != null) {
+                    return listaTitulos.get(linha).getCategoria().getNome();
+                } else {
+                    return null;
+                }
+                
             case 10:
                 return listaTitulos.get(linha).getTipoTituloTitulo();
             case 11:
@@ -97,5 +102,11 @@ public class TituloTableModel extends AbstractTableModel {
     public void updateRow() {
         this.fireTableDataChanged();
     }
+
+    public List<Titulo> getListaTitulos() {
+        return listaTitulos;
+    }
+    
+   
 
 }

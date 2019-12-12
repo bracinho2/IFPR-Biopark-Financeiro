@@ -40,9 +40,9 @@ public class TelaTitulo extends javax.swing.JFrame {
     List<Categoria> categorias = new ArrayList();
     List<TipoTitulo> tipoTitulos = new ArrayList();
     List<Pessoa> pessoas = new ArrayList();
-    
-    
-    
+     
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+      
     
     public TelaTitulo() throws ParseException {
         initComponents();
@@ -53,7 +53,11 @@ public class TelaTitulo extends javax.swing.JFrame {
         //seta os tamanhos das colunas da tabela;
         jTitulos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
-        jTitulos.getColumnModel().getColumn(0).setMinWidth(1);
+        jTitulos.getColumnModel().getColumn(0).setMinWidth(30);
+        jTitulos.getColumnModel().getColumn(0).setPreferredWidth(30);
+        jTitulos.getColumnModel().getColumn(0).setMaxWidth(30);
+        
+        
         jTitulos.getColumnModel().getColumn(1).setMinWidth(0);
         jTitulos.getColumnModel().getColumn(2).setMinWidth(0);
         jTitulos.getColumnModel().getColumn(3).setMinWidth(0);
@@ -82,10 +86,11 @@ public class TelaTitulo extends javax.swing.JFrame {
         
         Collections.sort(categorias, null);
         
-        cbCategorias.addItem("Selecione");
+       // cbCategorias.addItem("Selecione");
 
         for (int i = 0; i < categorias.size(); i++) {
-            cbCategorias.addItem(categorias.get(i).getNome());
+           
+            cbCategorias.addItem(categorias.get(i));
         }
         
         //botao tipo de titulo
@@ -143,6 +148,11 @@ public class TelaTitulo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         jtDesc.setBorder(javax.swing.BorderFactory.createTitledBorder("Descricao"));
 
@@ -158,6 +168,11 @@ public class TelaTitulo extends javax.swing.JFrame {
             }
         ));
         jTitulos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTitulos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTitulosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTitulos);
 
         jtParcelas.setBorder(javax.swing.BorderFactory.createTitledBorder("Numero de Parcelas"));
@@ -370,7 +385,7 @@ public class TelaTitulo extends javax.swing.JFrame {
                 }
                                                 
                 t.setValor(Float.parseFloat(jtValor.getText()));
-                t.setCategoriaTitulo((String) cbCategorias.getSelectedItem().toString());
+                t.setCategoria((Categoria) cbCategorias.getSelectedItem());
                 t.setTipoTituloTitulo((String) cbTipoTitulo.getSelectedItem().toString());
                 t.setPessoaTitulo((String)cbPessoas.getSelectedItem().toString());
                 t.setPessoa(pessoas.get(cbPessoas.getSelectedIndex()-1));
@@ -426,7 +441,7 @@ public class TelaTitulo extends javax.swing.JFrame {
                 }
                                                 
                 t.setValor(Float.parseFloat(jtValor.getText()));
-                t.setCategoriaTitulo(cbTipoTitulo.getSelectedItem().toString());
+                t.setCategoria((Categoria) cbTipoTitulo.getSelectedItem());
                 t.setTipoTituloTitulo(cbTipoTitulo.getSelectedItem().toString());
                 t.setPessoaTitulo(cbPessoas.getSelectedItem().toString());
                 t.setPessoa(pessoas.get(cbPessoas.getSelectedIndex()-1));
@@ -557,6 +572,53 @@ public class TelaTitulo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbPessoasActionPerformed
 
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        
+    }//GEN-LAST:event_formMouseClicked
+
+    private void jTitulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTitulosMouseClicked
+        if (evt.getClickCount() == 2){
+        
+            Titulo t = tabelaTitulo.getListaTitulos().get(jTitulos.getSelectedRow());
+            
+            //insere as informaçoes nos campos
+                jtDesc.setText(t.getDescricao());
+                jtValor.setText(String.valueOf(t.getValor()));
+                jfVencimento.setText(sdf.format(t.getDataVencimento()));
+                jtParcelas.setText(String.valueOf(t.getNumeroParcelaTitulo()));
+                jtNumeroTitulo.setText(String.valueOf(t.getNumeroTitulo()));
+                jfDataRegistro.setText(sdf.format(t.getDataHoraCadastroTitulo()));
+                
+                //botao ativo
+                if(t.getRegistroAtivoTitulo() == 1){
+                    jcAtivo.setSelectedIndex(0);
+                } else {
+                    jcAtivo.setSelectedIndex(1);
+                }
+                
+                //botao situacao
+                cbSituacao.setSelectedItem(t.getStatus());
+                
+                //botao categoria
+                cbCategorias.setSelectedItem(t.getCategoria());
+                
+                //botao tipo titulo
+                cbTipoTitulo.setSelectedItem(t.getTipoTitulo());
+                
+                //botao pessoa
+                cbPessoas.setSelectedItem(t.getPessoa().getNome());
+                
+                for(int i = 0; i > pessoas.size(); i++){
+                    if(tabelaTitulo.getIdPessoa(jTitulos.getSelectedRow()) == pessoas.get(i).getId()){
+                        cbPessoas.setSelectedIndex(i+1);
+                    }
+                }
+            
+            
+        JOptionPane.showMessageDialog(this, t.getId());
+        }
+    }//GEN-LAST:event_jTitulosMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -597,7 +659,7 @@ public class TelaTitulo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbCategorias;
+    private javax.swing.JComboBox<Categoria> cbCategorias;
     private javax.swing.JComboBox<String> cbPessoas;
     private javax.swing.JComboBox<String> cbSituacao;
     private javax.swing.JComboBox<String> cbTipoTitulo;
