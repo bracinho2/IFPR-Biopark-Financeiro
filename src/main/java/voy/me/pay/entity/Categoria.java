@@ -27,7 +27,7 @@ public class Categoria implements EntidadeBase, Serializable, Comparable<Categor
     private int registroAtivo;
     
     @OneToMany(mappedBy = "categoria")
-    private List<Titulo> categoriaTitulos;
+    private List<Titulo> categoria;
     
     @Override
     public Long getId() {
@@ -54,13 +54,15 @@ public class Categoria implements EntidadeBase, Serializable, Comparable<Categor
         this.registroAtivo = registroAtivo;
     }
 
-    public List<Titulo> getCategoriaTitulos() {
-        return categoriaTitulos;
+    public List<Titulo> getCategoria() {
+        return categoria;
     }
 
-    public void setCategoriaTitulos(List<Titulo> categoriaTitulos) {
-        this.categoriaTitulos = categoriaTitulos;
+    public void setCategoria(List<Titulo> categoria) {
+        this.categoria = categoria;
     }
+
+    
 
     @Override
     public int compareTo(Categoria o) {
