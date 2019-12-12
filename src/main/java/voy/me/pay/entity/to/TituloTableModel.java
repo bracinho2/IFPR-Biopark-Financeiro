@@ -36,7 +36,12 @@ public class TituloTableModel extends AbstractTableModel {
     public Object getValueAt(int linha, int coluna) {
         switch (coluna) {
             case 0: //correto
-                return listaTitulos.get(linha).getId();
+                if(listaTitulos.get(linha).getId() == null){
+                    return null;
+                } else {
+                    return listaTitulos.get(linha).getId();
+                }
+                
             case 1://correto
                 return listaTitulos.get(linha).getDescricao();
             case 2: //correto
@@ -75,9 +80,19 @@ public class TituloTableModel extends AbstractTableModel {
                 }
                 
             case 10:
-                return listaTitulos.get(linha).getTipoTituloTitulo();
+                if(listaTitulos.get(linha).getTipoTitulo() != null){
+                    return listaTitulos.get(linha).getTipoTitulo().getNome();
+                } else {
+                    return null;
+                }
+                
             case 11:
-                return listaTitulos.get(linha).getPessoa().getNome();
+                if(listaTitulos.get(linha).getPessoa() != null){
+                    return listaTitulos.get(linha).getPessoa().getNome();
+                } else {
+                    return null;
+                }
+                
                 //return listaTitulos.get(linha).getPessoaTitulo();
         }
 

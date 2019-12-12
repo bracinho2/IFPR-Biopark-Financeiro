@@ -43,28 +43,16 @@ public class Titulo implements EntidadeBase {
     
     @Column(name="registroAtivo")
     private int registroAtivoTitulo;
-    
-    
-    //tipo de titulos
-    @Column(name="tipotitulo")
-    private String tipoTituloTitulo;
-
+   
     @ManyToOne(cascade = CascadeType.PERSIST)
     private TipoTitulo tipoTitulo;
-    
-    //categorias
-   // @Column(name="categoria")
-   // private String categoriaTitulo;
-    
+   
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Categoria categoria;
     
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Pessoa pessoa;
     
-    @Column(name="pessoa")
-    private String pessoaTitulo;
-
     @Override
     public Long getId() {
         return id;
@@ -145,17 +133,7 @@ public class Titulo implements EntidadeBase {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
-
    
-
-    public String getTipoTituloTitulo() {
-        return tipoTituloTitulo;
-    }
-
-    public void setTipoTituloTitulo(String tipoTituloTitulo) {
-        this.tipoTituloTitulo = tipoTituloTitulo;
-    }
-
     public TipoTitulo getTipoTitulo() {
         return tipoTitulo;
     }
@@ -171,18 +149,7 @@ public class Titulo implements EntidadeBase {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
-
-    public String getPessoaTitulo() {
-        return pessoaTitulo;
-    }
-
-    public void setPessoaTitulo(String pessoaTitulo) {
-        this.pessoaTitulo = pessoaTitulo;
-    }
-
+ 
     
-
-    
-       
     
 }
