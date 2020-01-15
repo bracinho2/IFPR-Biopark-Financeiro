@@ -1,5 +1,6 @@
 package voy.me.pay.control;
 
+import java.util.Collections;
 import java.util.List;
 import voy.me.pay.dao.CategoriaDAO;
 import voy.me.pay.dao.PessoaDAO;
@@ -31,6 +32,12 @@ public class ControllerTitulo {
     public List<Titulo> listaTitulos() {
         return tituloDao.listarDados();
 
+    }
+    
+    public List<Titulo> findByFilter(String nome, String text) {
+        List<Titulo> lista = tituloDao.findByFilter(nome, text);
+        //Collections.sort(lista);
+        return lista;
     }
     
 }
