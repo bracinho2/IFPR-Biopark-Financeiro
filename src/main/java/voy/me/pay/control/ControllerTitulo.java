@@ -34,8 +34,8 @@ public class ControllerTitulo {
 
     }
     
-    public List<Titulo> findByFilter(String nome, String text) {
-        List<Titulo> lista = tituloDao.findByFilter(nome, text);
+    public List<Titulo> findByFilter(String descricao, String text) {
+        List<Titulo> lista = tituloDao.findByFilter(descricao, text);
         //Collections.sort(lista);
         return lista;
     }

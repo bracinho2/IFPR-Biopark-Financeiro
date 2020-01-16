@@ -220,6 +220,11 @@ public class TelaTitulo extends javax.swing.JFrame {
         });
 
         btnPesquisa.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisar"));
+        btnPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisaActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Pesquisar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -617,6 +622,10 @@ public class TelaTitulo extends javax.swing.JFrame {
         tabelaTitulo.setListaTitulos(listaTitulo);
         tabelaTitulo.updateRow();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPesquisaActionPerformed
 
     /**
      * @param args the command line arguments

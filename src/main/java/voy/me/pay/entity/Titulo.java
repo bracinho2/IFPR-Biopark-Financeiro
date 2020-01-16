@@ -21,6 +21,9 @@ public class Titulo implements EntidadeBase {
     @Column(name="id")
     private Long id;
     
+    @Column(name="nome")
+    private String nome;
+    
     @Column(name="descricao")
     private String descricao;
     
