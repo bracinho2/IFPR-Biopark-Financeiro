@@ -617,7 +617,7 @@ public class TelaTitulo extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ControllerTitulo t = new ControllerTitulo();
-        List<Titulo> listaTitulo = t.findByFilter("nome", btnPesquisa.getText());
+        List<Titulo> listaTitulo = t.findByFilter("descricao", btnPesquisa.getText());
         
         tabelaTitulo.setListaTitulos(listaTitulo);
         tabelaTitulo.updateRow();

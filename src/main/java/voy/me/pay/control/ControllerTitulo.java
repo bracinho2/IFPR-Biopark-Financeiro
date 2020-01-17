@@ -5,8 +5,6 @@ import java.util.List;
 import voy.me.pay.dao.CategoriaDAO;
 import voy.me.pay.dao.PessoaDAO;
 import voy.me.pay.dao.TituloDAO;
-import voy.me.pay.entity.Categoria;
-import voy.me.pay.entity.Pessoa;
 import voy.me.pay.entity.Titulo;
 
 
@@ -35,9 +33,9 @@ public class ControllerTitulo {
     }
     
     public List<Titulo> findByFilter(String descricao, String text) {
-        List<Titulo> lista = tituloDao.findByFilter(descricao, text);
-        //Collections.sort(lista);
-        return lista;
+        List<Titulo> titulos = tituloDao.findByFilter(descricao, text);
+        Collections.sort(titulos);
+        return titulos;
     }
     
 }

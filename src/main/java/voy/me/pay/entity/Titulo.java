@@ -1,6 +1,7 @@
 package voy.me.pay.entity;
 
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(schema = "mevoypay")
-public class Titulo implements EntidadeBase {
+public class Titulo implements EntidadeBase, Comparable<Titulo> {
 
     //atributos da classe título;
     @Id
@@ -153,7 +154,33 @@ public class Titulo implements EntidadeBase {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
- 
+
+    @Override
+    public int compareTo(Titulo t) {
+        return getDescricao().compareTo(t.getDescricao());
+    }
     
+    @Override
+    public String toString() {
+        return nome;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Titulo other = (Titulo) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }    
     
 }

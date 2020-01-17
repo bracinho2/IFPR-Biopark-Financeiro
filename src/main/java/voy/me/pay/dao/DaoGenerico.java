@@ -74,11 +74,9 @@ public class DaoGenerico<T extends EntidadeBase> {
     }
     
     public List<T> findByFilter(String campo, String text){
-        String sql = "select c from " + classe.getName() + " c where c." + campo + " like :filtro";
+        String sql = "select c from " + classe.getName() + " c where c." + campo + " like :filtro"; 
         System.out.println(sql);
         return manager.createQuery(sql, classe).setParameter("filtro", "%" + text + "%").getResultList();
     }
-    
    
-
 }
