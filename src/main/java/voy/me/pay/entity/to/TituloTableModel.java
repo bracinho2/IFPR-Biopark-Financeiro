@@ -14,14 +14,14 @@ public class TituloTableModel extends AbstractTableModel {
 
     ControllerTitulo titulos = new ControllerTitulo();
     List<Titulo> listaTitulos = titulos.listaTitulos();
-    List<Titulo> listaTitulo = new ArrayList();
+    
     
     public List<Titulo> getListaTitulos() {
-        return listaTitulo;
+        return listaTitulos;
     }
 
     public void setListaTitulos(List<Titulo> listaTitulo) {
-        this.listaTitulo = listaTitulo;
+        this.listaTitulos = listaTitulo;
     }
 
     private String[] nomeColunasTitulo = {"ID", "Descricao", "Valor", "Vencimento", "Parcelas",
