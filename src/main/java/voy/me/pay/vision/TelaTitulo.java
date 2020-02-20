@@ -123,7 +123,9 @@ public class TelaTitulo extends javax.swing.JFrame {
         cbCategorias = new javax.swing.JComboBox<>();
         cbPessoas = new javax.swing.JComboBox<>();
         btnPesquisa = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        pesquisaNome = new javax.swing.JButton();
+        cbStatusPesquisa = new javax.swing.JComboBox<>();
+        pesquisaSituacao = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -219,17 +221,27 @@ public class TelaTitulo extends javax.swing.JFrame {
             }
         });
 
-        btnPesquisa.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisar"));
+        btnPesquisa.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisar por Nome"));
         btnPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisaActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Pesquisar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        pesquisaNome.setText("Pesquisar");
+        pesquisaNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                pesquisaNomeActionPerformed(evt);
+            }
+        });
+
+        cbStatusPesquisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendente", "Liquidado" }));
+        cbStatusPesquisa.setBorder(javax.swing.BorderFactory.createTitledBorder("Situação"));
+
+        pesquisaSituacao.setText("Pesquisar");
+        pesquisaSituacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisaSituacaoActionPerformed(evt);
             }
         });
 
@@ -278,7 +290,12 @@ public class TelaTitulo extends javax.swing.JFrame {
                                         .addComponent(cbTipoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(cbPessoas, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jButton1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(pesquisaNome)
+                                        .addGap(40, 40, 40)
+                                        .addComponent(cbStatusPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(pesquisaSituacao)))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -312,10 +329,14 @@ public class TelaTitulo extends javax.swing.JFrame {
                     .addComponent(cbCategorias)
                     .addComponent(cbPessoas))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pesquisaNome))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cbStatusPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pesquisaSituacao)))
+                .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -615,17 +636,29 @@ public class TelaTitulo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTitulosMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void pesquisaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisaNomeActionPerformed
         ControllerTitulo t = new ControllerTitulo();
         List<Titulo> listaTitulo = t.findByFilter("descricao", btnPesquisa.getText());
+        //List<Titulo> listaTitulo = t.findByFilter("status", (String) cbSituacao.getSelectedItem());
         
+        System.out.println(cbSituacao.getSelectedItem());        
         tabelaTitulo.setListaTitulos(listaTitulo);
         tabelaTitulo.updateRow();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_pesquisaNomeActionPerformed
 
     private void btnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPesquisaActionPerformed
+
+    private void pesquisaSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisaSituacaoActionPerformed
+        ControllerTitulo t = new ControllerTitulo();
+        //List<Titulo> listaTitulo = t.findByFilter("descricao", btnPesquisa.getText());
+        List<Titulo> listaTitulo = t.findByFilter("status", (String) cbStatusPesquisa.getSelectedItem());
+        
+        System.out.println(cbStatusPesquisa.getSelectedItem());        
+        tabelaTitulo.setListaTitulos(listaTitulo);
+        tabelaTitulo.updateRow();
+    }//GEN-LAST:event_pesquisaSituacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -671,8 +704,8 @@ public class TelaTitulo extends javax.swing.JFrame {
     private javax.swing.JComboBox<Categoria> cbCategorias;
     private javax.swing.JComboBox<Pessoa> cbPessoas;
     private javax.swing.JComboBox<String> cbSituacao;
+    private javax.swing.JComboBox<String> cbStatusPesquisa;
     private javax.swing.JComboBox<TipoTitulo> cbTipoTitulo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTitulos;
     private javax.swing.JButton jbEditar;
@@ -686,5 +719,7 @@ public class TelaTitulo extends javax.swing.JFrame {
     private javax.swing.JTextField jtNumeroTitulo;
     private javax.swing.JTextField jtParcelas;
     private javax.swing.JTextField jtValor;
+    private javax.swing.JButton pesquisaNome;
+    private javax.swing.JButton pesquisaSituacao;
     // End of variables declaration//GEN-END:variables
 }
